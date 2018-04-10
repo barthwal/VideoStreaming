@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Listing Videos</title>
+	<style>
+		*{padding: 0;margin:0;}
+		.container {
+			position: absolute;
+			display: block;
+			width: 600px;
+			height: 350px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border: 1px solid #ccc;
+		}
+
+		.videoBtn {
+			float: left;
+			width: 31.3%;
+			margin: 5px 1%;
+			height: 165px;
+			line-height: 165px;
+			text-align: center;
+			background: #eaeaea;
+			color: #615f5f;
+			user-select: none;
+			cursor: pointer;
+		}
+		.popup_video {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			display: none;
+			background-color: rgba(0,0,0,0.3);
+		}
+		.popup_video video{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+	<div class="videoBtn" data-url="assets/Cinq_Fernando_animations.m4v">Cinq_Fernando_animations</div>
+	<div class="videoBtn" data-url="assets/Quatre_Fernando_animations.m4v">Quatre_Fernando_animations</div>
+	<div class="videoBtn" data-url="assets/Quatre_Fernando.m4v">Quatre_Fernando</div>
+	<div class="videoBtn" data-url="assets/Trois_Fernando_animations.m4v">Cinq_Fernando_animations</div>
+	<div class="videoBtn" data-url="assets/Zero_Farnando_animations.m4v">Zero_Farnando_animations</div>
+</div>
+
+<div class="popup_video">
+	<!-- <video width="320" height="240" controls src="https://www.w3schools.com/html/movie.mp4"></video> -->
+	<video src="assets/Cinq_Fernando_animations.m4v" controls></video>
+</div>
+
+
+<script>
+window.onload = function() {
+	var videoBtn = document.querySelectorAll('.videoBtn');
+	var videoPopup = document.querySelector('.popup_video');
+
+	videoBtn.forEach(function(ele, ind){
+		ele.addEventListener('click', function() {
+			var url = this.getAttribute('data-url');
+			videoPopup.children[0].src = url;
+			videoPopup.style.display = 'block';
+		});
+	});
+
+	videoPopup.addEventListener('click', function() {
+		this.children[0].src = '';
+		this.style.display = 'none';
+	});
+
+}
+</script>
+
+</body>
+</html>
