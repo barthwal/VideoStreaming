@@ -10,17 +10,25 @@ module.exports.get = function(req, res) {
         if (err) {
             if (err.code === 'ENOENT') {
                 // 404 Error if file not found
-                return res.sendStatus(404);
+                fs.readFile(path.resolve(appRoot + config.public + '/404.html'), function(error, content) {
+                    res.writeHead(200, { 'Content-Type': contentType });
+                    res.end(content, 'utf-8');
+                });
+
+                return;
             }
             res.end(err);
         }
 
         var range = req.headers.range;
-
-        console.log("range: ", range, !range);
         if (!range) {
             // 416 Wrong range
-            res.sendStatus(416);
+            //res.sendStatus(416);
+            res.writeHead(416);
+            res.end('Sorry, check with the site admin for error: 416 ..\n');
+            res.end();
+
+            return;
         }
 
         var positions = range.replace(/bytes=/, "").split("-");
