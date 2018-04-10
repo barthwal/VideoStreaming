@@ -14,5 +14,8 @@ Video stream server using Node.js, working example (http://192.168.1.83:3000)
 	```
 * If everything goes well, then add platform
 	```bash
-	open url: http://192.168.1.83:3000/home.html in your browser
+	$ node server.js
 	```
+	
+
+open url: http://192.168.1.83:3000/home.html in your browser
